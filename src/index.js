@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import BaiTapGioHang from './BaiTapGioHang_Props/BaiTapGioHang';
+import ExerciseCart from './BaiTapGioHang_Props/ExerciseCart';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
