@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 export default class Cart extends Component {
   render() {
+    const { gioHang } = this.props;
     return (
       // <!-- Modal -->
       <div
@@ -38,7 +39,22 @@ export default class Cart extends Component {
                     <th>Thành tiền</th>
                   </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                  {gioHang.map((spGH, index) => {
+                    return (<tr key={index}>
+                        <td>{spGH.maSP}</td>
+                        <td>
+                          <img src={spGH.hinhAnh} width={50} height={50} />
+                        </td>
+                        <td>{spGH.tenSP}</td>
+                        <td>{spGH.soLuong}</td>
+                        <td>{spGH.giaBan}</td>
+                        <td>{spGH.soLuong * spGH.giaBan}</td>
+                        <td>{}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
               </table>
             </div>
             <div className="modal-footer">

@@ -44,7 +44,6 @@ const data = [
 ];
 
 export default class ExerciseCart extends Component {
-
   state = {
     sanPhamChiTiet: {
       maSP: 1,
@@ -57,30 +56,60 @@ export default class ExerciseCart extends Component {
       rom: "64 GB",
       giaBan: 5700000,
       hinhAnh: "./img/img/vsphone.jpg",
-    }
-  }
+    },
+
+    // phải là 1 mảng vì nếu thêm nhiều sản phẫm nó trả vê nhiều <tr></tr> và sẽ chứa trong mảng đó ( chứ ko phải {} vì {} không chứa được nhiều sản phẩm)
+    gioHang: [{
+      maSP: 1,
+      tenSP: "VinSmart Live",
+      giaBan: 5700000,
+      hinhAnh: "./img/img/vsphone.jpg",
+      soLuong:1,
+    }]
+  };
 
   xemChiTiet = (sanPhamClick) => {
-    console.log(sanPhamClick);
- 
+    // console.log(sanPhamClick);
+    this.setState({
+      sanPhamChiTiet: sanPhamClick,
+    });
   };
 
   render() {
     let {tenSP,maSP,manHinh,heDieuHanh,cameraTruoc,cameraSau,ram,rom,giaBan,hinhAnh,} = this.state.sanPhamChiTiet;
     return (
       <div className="container">
-         <h3 className='text-center text-success mt-2'>Bài tập giỏ hàng</h3>
-        <Cart />
-        <div className="text" style={{width:'100%', display: 'flex', justifyContent: 'flex-end'}}> <div className="text_left"></div> <span className="text-danger" style={{display:'block', cursor:'pointer', textAlign:'right', margin:'10px'}} data-bs-toggle="modal" data-bs-target="#modelId">Giỏ hàng (0)</span></div>
-        <ProductList data={data} />
+        <h3 className="text-center text-success mt-2">Bài tập giỏ hàng</h3>
+        <Cart gioHang={this.state.gioHang} />
+        <div
+          className="text"
+          style={{ width: "100%", display: "flex", justifyContent: "flex-end" }}
+        >
+          {" "}
+          <div className="text_left"></div>{" "}
+          <span
+            className="text-danger"
+            style={{
+              display: "block",
+              cursor: "pointer",
+              textAlign: "right",
+              margin: "10px",
+            }}
+            data-bs-toggle="modal"
+            data-bs-target="#modelId"
+          >
+            Giỏ hàng (0)
+          </span>
+        </div>
+        <ProductList xemChiTiet={this.xemChiTiet} data={data} />
 
         <div className="mt-5">
           <div className="row">
             <div className="col-4">
               <h3 className="text-center">{tenSP}</h3>
-              <img src={hinhAnh} alt="" width={'300px'}/>
+              <img src={hinhAnh} alt="" width={"300px"} />
             </div>
-            <div className="col-8" style={{textAlign: 'left',}}>
+            <div className="col-8" style={{ textAlign: "left" }}>
               <h3>Thông số kỹ thuật</h3>
               <hr />
               <table className="table">
@@ -114,7 +143,6 @@ export default class ExerciseCart extends Component {
             </div>
           </div>
         </div>
-
       </div>
     );
   }
