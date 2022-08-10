@@ -59,13 +59,15 @@ export default class ExerciseCart extends Component {
     },
 
     // phải là 1 mảng vì nếu thêm nhiều sản phẫm nó trả vê nhiều <tr></tr> và sẽ chứa trong mảng đó ( chứ ko phải {} vì {} không chứa được nhiều sản phẩm)
-    gioHang: [{
+    gioHang: [
+      {
       maSP: 1,
       tenSP: "VinSmart Live",
       giaBan: 5700000,
       hinhAnh: "./img/img/vsphone.jpg",
       soLuong:1,
-    }]
+      },
+    ]
   };
 
   xemChiTiet = (sanPhamClick) => {
@@ -77,6 +79,10 @@ export default class ExerciseCart extends Component {
 
   render() {
     let {tenSP,maSP,manHinh,heDieuHanh,cameraTruoc,cameraSau,ram,rom,giaBan,hinhAnh,} = this.state.sanPhamChiTiet;
+    // tính tổng số lượng sản phẫm của giỏ hàng
+    let tongSoLuong = this.state.gioHang.reduce((tsl,sanPham,index)=>{
+      return tsl += sanPham.soLuong
+    },0) 
     return (
       <div className="container">
         <h3 className="text-center text-success mt-2">Bài tập giỏ hàng</h3>
@@ -98,7 +104,7 @@ export default class ExerciseCart extends Component {
             data-bs-toggle="modal"
             data-bs-target="#modelId"
           >
-            Giỏ hàng (0)
+            Giỏ hàng ( {tongSoLuong} )
           </span>
         </div>
         <ProductList xemChiTiet={this.xemChiTiet} data={data} />
