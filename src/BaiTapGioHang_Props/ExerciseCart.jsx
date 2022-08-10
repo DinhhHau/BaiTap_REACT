@@ -132,7 +132,7 @@ export default class ExerciseCart extends Component {
             data-bs-toggle="modal"
             data-bs-target="#modelId"
           >
-            Giỏ hàng ( {tongSoLuong} )
+           <i className="fas fa-shopping-cart"></i> ( {tongSoLuong} )
           </span>
         </div>
         <ProductList themGioHang={this.themGioHang} xemChiTiet={this.xemChiTiet} data={data} />
