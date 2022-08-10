@@ -67,18 +67,46 @@ export default class ExerciseCart extends Component {
       hinhAnh: "./img/img/vsphone.jpg",
       soLuong:1,
       },
-    ]
+    ],
   };
 
+  //  setState để xem chi tiết sản phẩm
   xemChiTiet = (sanPhamClick) => {
     // console.log(sanPhamClick);
     this.setState({
-      sanPhamChiTiet: sanPhamClick,
-    });
+      sanPhamChiTiet: sanPhamClick
+    })
+
   };
+
+  //  setState để thêm giỏ hàng
+  // Lấy dữ liệu tại component cha
+  themGioHang = (sanPhamClick) => {
+    // console.log(sanPhamClick);
+    
+    // từ sp được chọn tạo ra sp giỏ hàng
+      let spGioHang = { maSP: sanPhamClick.maSP, tenSP: sanPhamClick.tenSP, giaBan: sanPhamClick.giaBan, hinhAnh: sanPhamClick.hinhAnh, soLuong:1,}
+    
+    // kiểm tra spClick có trong giỏ hàng chưa
+      var gioHangCapNhat = [...this.state.gioHang];
+      let index = gioHangCapNhat.findIndex(sp => sp.maSP === spGioHang.maSP);
+        if (index !== -1) {
+          // Sản phảm được click đã có trong this.state.gioHang
+          gioHangCapNhat[index].soLuong += 1;
+        }else {
+          // Sản phảm được click chưa có trong this.state.gioHang
+          gioHangCapNhat.push(spGioHang)
+        }
+    
+        // Set state để component render lại
+        this.setState({
+          gioHang: gioHangCapNhat
+        })
+  }
 
   render() {
     let {tenSP,maSP,manHinh,heDieuHanh,cameraTruoc,cameraSau,ram,rom,giaBan,hinhAnh,} = this.state.sanPhamChiTiet;
+    
     // tính tổng số lượng sản phẫm của giỏ hàng
     let tongSoLuong = this.state.gioHang.reduce((tsl,sanPham,index)=>{
       return tsl += sanPham.soLuong
@@ -107,7 +135,7 @@ export default class ExerciseCart extends Component {
             Giỏ hàng ( {tongSoLuong} )
           </span>
         </div>
-        <ProductList xemChiTiet={this.xemChiTiet} data={data} />
+        <ProductList themGioHang={this.themGioHang} xemChiTiet={this.xemChiTiet} data={data} />
 
         <div className="mt-5">
           <div className="row">
