@@ -159,7 +159,6 @@ export default class ExerciseCart extends Component {
 
     return (
       <div className="container">
-        <h3 className="text-center text-success mt-2">Bài Tập Giỏ Hàng</h3>
         <Cart tangGiamSoLuong={this.tangGiamSoLuong} xoaGioHang={this.xoaGioHang} gioHang={this.state.gioHang} />
         <div
           className="text"
