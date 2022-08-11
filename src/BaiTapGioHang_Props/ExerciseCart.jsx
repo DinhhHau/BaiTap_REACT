@@ -60,13 +60,13 @@ export default class ExerciseCart extends Component {
 
     // phải là 1 mảng vì nếu thêm nhiều sản phẫm nó trả vê nhiều <tr></tr> và sẽ chứa trong mảng đó ( chứ ko phải {} vì {} không chứa được nhiều sản phẩm)
     gioHang: [
-      {
-      maSP: 1,
-      tenSP: "VinSmart Live",
-      giaBan: 5700000,
-      hinhAnh: "./img/img/vsphone.jpg",
-      soLuong:1,
-      },
+      // {
+      // maSP: 1,
+      // tenSP: "VinSmart Live",
+      // giaBan: 5700000,
+      // hinhAnh: "./img/img/vsphone.jpg",
+      // soLuong:1,
+      // },
     ],
   };
 
@@ -74,47 +74,93 @@ export default class ExerciseCart extends Component {
   xemChiTiet = (sanPhamClick) => {
     // console.log(sanPhamClick);
     this.setState({
-      sanPhamChiTiet: sanPhamClick
-    })
-
+      sanPhamChiTiet: sanPhamClick,
+    });
   };
 
   //  setState để thêm giỏ hàng
   // Lấy dữ liệu tại component cha
   themGioHang = (sanPhamClick) => {
     // console.log(sanPhamClick);
-    
+
     // từ sp được chọn tạo ra sp giỏ hàng
-      let spGioHang = { maSP: sanPhamClick.maSP, tenSP: sanPhamClick.tenSP, giaBan: sanPhamClick.giaBan, hinhAnh: sanPhamClick.hinhAnh, soLuong:1,}
-    
+    let spGioHang = {
+      maSP: sanPhamClick.maSP,
+      tenSP: sanPhamClick.tenSP,
+      giaBan: sanPhamClick.giaBan,
+      hinhAnh: sanPhamClick.hinhAnh,
+      soLuong: 1,
+    };
+
     // kiểm tra spClick có trong giỏ hàng chưa
-      var gioHangCapNhat = [...this.state.gioHang];
-      let index = gioHangCapNhat.findIndex(sp => sp.maSP === spGioHang.maSP);
-        if (index !== -1) {
-          // Sản phảm được click đã có trong this.state.gioHang
-          gioHangCapNhat[index].soLuong += 1;
-        }else {
-          // Sản phảm được click chưa có trong this.state.gioHang
-          gioHangCapNhat.push(spGioHang)
-        }
-    
-        // Set state để component render lại
-        this.setState({
-          gioHang: gioHangCapNhat
-        })
+    let gioHangCapNhat = [...this.state.gioHang];
+    let index = gioHangCapNhat.findIndex((sp) => sp.maSP === spGioHang.maSP);
+    if (index !== -1) {
+      // Sản phảm được click đã có trong this.state.gioHang
+      gioHangCapNhat[index].soLuong += 1;
+    } else {
+      // Sản phảm được click chưa có trong this.state.gioHang
+      gioHangCapNhat.push(spGioHang);
+    }
+
+    // Set state để component render lại
+    this.setState({
+      gioHang: gioHangCapNhat,
+    });
+  };
+
+  // Đặt sự kiện xoá giỏ hàng tại ExercideCart
+  xoaGioHang = (maSPClickXoa) => {
+    // console.log(maSPClickXoa);
+
+    // // Cách 1: dùng hàm findIndex()
+    // // tìm trong giỏ hàng có sp chứa maSP được click vào thì xoá
+    // let gioHangCapNhatXoa = [...this.state.gioHang];
+    // let index = gioHangCapNhatXoa.findIndex(sp => sp.maSP === maSPClickXoa);
+    // if(index !== -1) {
+    //   gioHangCapNhatXoa.splice(index,1)
+    // }
+
+    // // Cách 2: dùng hàm filter()
+    // sau khi hàm filter() chạy lấy ra những sản phẩm nào có mã sản phẩm khác mã sản phẩm mình click vô (đồng nghĩa việc xoá sản phẩm mình click)
+    var gioHangCapNhatXoa = this.state.gioHang.filter(
+      (sp) => sp.maSP !== maSPClickXoa
+    );
+
+    // Cập nhật lại state giỏ hàng và render lại giao diện ( setState )
+    this.setState({
+      gioHang: gioHangCapNhatXoa,
+    });
+  };
+
+  // Tăng Giảm số lượng sản phẩm
+  tangGiamSoLuong = (maSPTangGiam,tangGiam) => { // tangGiam === true: tăng số lượng,  tangGiam === false: giảm số lượng
+    // console.log(maSPTangGiam);
+    let gioHangCapNhatTangGiam = this.state.gioHang;
+    let index = gioHangCapNhatTangGiam.findIndex(sp => sp.maSP === maSPTangGiam);
+    if(tangGiam){
+      gioHangCapNhatTangGiam[index].soLuong +=1
+    }else if(gioHangCapNhatTangGiam[index].soLuong > 1){
+      gioHangCapNhatTangGiam[index].soLuong -=1
+    }
+    // Cập nhật lại state giỏ hàng và render lại giao diện ( setState )
+    this.setState({
+      gioHang:gioHangCapNhatTangGiam
+    })
   }
 
   render() {
     let {tenSP,maSP,manHinh,heDieuHanh,cameraTruoc,cameraSau,ram,rom,giaBan,hinhAnh,} = this.state.sanPhamChiTiet;
-    
-    // tính tổng số lượng sản phẫm của giỏ hàng
-    let tongSoLuong = this.state.gioHang.reduce((tsl,sanPham,index)=>{
-      return tsl += sanPham.soLuong
-    },0) 
+
+    // tính tổng số lượng sản phẫm của giỏ hàng ( dùng hàm reduce ES6 )
+    let tongSoLuong = this.state.gioHang.reduce((tsl, sanPham, index) => {
+      return (tsl += sanPham.soLuong);
+    }, 0); // Lúc đầu giá trị là 0 rồi chạy hàm reduce có bn số lượng thì cộng vào
+
     return (
       <div className="container">
-        <h3 className="text-center text-success mt-2">Bài tập giỏ hàng</h3>
-        <Cart gioHang={this.state.gioHang} />
+        <h3 className="text-center text-success mt-2">Bài Tập Giỏ Hàng</h3>
+        <Cart tangGiamSoLuong={this.tangGiamSoLuong} xoaGioHang={this.xoaGioHang} gioHang={this.state.gioHang} />
         <div
           className="text"
           style={{ width: "100%", display: "flex", justifyContent: "flex-end" }}
@@ -132,10 +178,18 @@ export default class ExerciseCart extends Component {
             data-bs-toggle="modal"
             data-bs-target="#modelId"
           >
-           <i className="fas fa-shopping-cart"></i> ( {tongSoLuong} )
+            <i
+              className="fas fa-shopping-cart"
+              style={{ fontSize: "20px" }}
+            ></i>{" "}
+            ( {tongSoLuong} )
           </span>
         </div>
-        <ProductList themGioHang={this.themGioHang} xemChiTiet={this.xemChiTiet} data={data} />
+        <ProductList
+          themGioHang={this.themGioHang}
+          xemChiTiet={this.xemChiTiet}
+          data={data}
+        />
 
         <div className="mt-5">
           <div className="row">

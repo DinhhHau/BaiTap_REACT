@@ -1,8 +1,23 @@
 import React, { Component } from "react";
 
 export default class Cart extends Component {
+
+  // // 
+  // tangSoLuong = (count, setCount) => {
+  //   count = count + 1
+  //   return setCount(count)
+  // }
+
+  // giamSoLuong = (count, setCount) => {
+  //   if(count > 0){
+  //     count = count -1
+  //     return setCount(count)
+  //   }
+  // }
+  // // 
+
   render() {
-    const { gioHang } = this.props;
+    const { gioHang , xoaGioHang , tangGiamSoLuong } = this.props;
     return (
       // <!-- Modal -->
       <div
@@ -47,10 +62,14 @@ export default class Cart extends Component {
                           <img src={spGH.hinhAnh} width={50} height={50} />
                         </td>
                         <td>{spGH.tenSP}</td>
-                        <td>{spGH.soLuong}</td>
-                        <td>{spGH.giaBan}</td>
-                        <td>{spGH.soLuong * spGH.giaBan}</td>
-                        <td>{}</td>
+                        <td>
+                          <button onClick={()=> tangGiamSoLuong(spGH.maSP,true)} className="btn btn-primary" style={{fontSize:'15px',margin:'0 5px',padding:'0',width:'25px',height:'25px'}}> + </button>
+                          {spGH.soLuong}
+                          <button onClick={()=> tangGiamSoLuong(spGH.maSP,false)} className="btn btn-primary" style={{fontSize:'15px',margin:'0 5px',padding:'0',width:'25px',height:'25px'}}> - </button>
+                        </td>
+                        <td>{spGH.giaBan.toLocaleString()}.$</td>{/* toLocaleString() : hàm để chuyển 10000 => 10.000 */}
+                        <td>{(spGH.soLuong * spGH.giaBan).toLocaleString()}.$</td>
+                        <td><button className="btn btn-danger" onClick={()=>{xoaGioHang(spGH.maSP)}}>Xoá</button></td>
                       </tr>
                     );
                   })}
