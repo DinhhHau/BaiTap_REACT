@@ -79,7 +79,6 @@ function App() {
       <div style={{minHeight: 612}}>
       <Outlet />
       </div>
-      <footer className="bg-dark  text-white text-center p-5">Footer</footer>
     </div>
   );
 }
