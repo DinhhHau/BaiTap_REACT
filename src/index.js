@@ -4,13 +4,24 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import BaiTapGioHang from './BaiTapGioHang_Props/BaiTapGioHang';
-import ExerciseCart from './BaiTapGioHang_Props/ExerciseCart';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import About from './pages/About/About';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <BrowserRouter>
+    <Routes> 
+      <Route path="" element={<App />} >
+        <Route path='' element={<Home />} > </Route>
+        <Route path='home' element={<Home />} > </Route>
+        <Route path='about' element={<About />} > </Route>
+        <Route path='baitapgiohang' element={<BaiTapGioHang />} > </Route>
+
+      </Route>
+       
+    </Routes>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
