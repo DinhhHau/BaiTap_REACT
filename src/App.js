@@ -11,7 +11,7 @@ function App() {
     <div>
       <nav className="navbar navbar-expand-sm navbar-dark bg-success">
         <NavLink  className="navbar-brand" to="">
-          CyberSoft
+        Nguyễn Đình Hậu
         </NavLink>
         <button
           className="navbar-toggler d-lg-none"
@@ -36,8 +36,8 @@ function App() {
               <NavLink className={({ isActive }) =>
                   isActive ? "bg-light text-dark nav-link" : "nav-link"
                 }
-                style={({ isActive }) => (isActive ? { borderRadius: 5 } : {})} to="/about">
-                About
+                style={({ isActive }) => (isActive ? { borderRadius: 5 } : {})} to="/baitapgiohang">
+                Bài Tập React
               </NavLink>
             </li>
             <li className="nav-item dropdown">
@@ -49,7 +49,7 @@ function App() {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                Bài Tập React
+                Dropdown
               </a>
               <div className="dropdown-menu" aria-labelledby="dropdownId">
                 <NavLink className="dropdown-item" to="/baitapgiohang">
