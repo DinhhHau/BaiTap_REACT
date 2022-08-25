@@ -48,6 +48,14 @@ function App() {
                 Bài Tập Form
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className={({ isActive }) =>
+                  isActive ? "bg-light text-dark nav-link" : "nav-link"
+                }
+                style={({ isActive }) => (isActive ? { borderRadius: 5 } : {})} to="/baitapdatvephim">
+                Bài Tập Đặt Vé Phim
+              </NavLink>
+            </li>
             {/* <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"

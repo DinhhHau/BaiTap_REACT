@@ -2,15 +2,15 @@ const stateDefault = {
   arrsinhVien: [
     {
       maSV: 1,
-      hoTen: "Nguyễn Đình Hậu",
+      hoTen: "John Cena",
       soDienThoai: "0909090909",
       email: "dhau99@gmail.com",
     },
     {
       maSV: 2,
-      hoTen: "Đặng Thị Ngọc Ý",
+      hoTen: "Ngọc Ý",
       soDienThoai: "0809023909",
-      email: "24thangg5@gmail.com",
+      email: "24thag5@gmail.com",
     },
   ],
   sinhVien: {
@@ -19,6 +19,8 @@ const stateDefault = {
     soDienThoai: "",
     email: "",
   },
+
+  arrSvSearch: [],
 };
 
 export const QuanLySinhVienReducer = (state = stateDefault, action) => {
@@ -64,8 +66,28 @@ export const QuanLySinhVienReducer = (state = stateDefault, action) => {
     }
 
     case "CAP_NHAT_SV": {
-      let { SVUpdate } = action.payload;
-      console.log(SVUpdate);
+      let { sinhVien } = action;
+      let arrSinhVienUpdate = [...state.arrsinhVien];
+
+      arrSinhVienUpdate.map((item, index) => {
+        if (sinhVien.maSV === item.maSV) {
+          arrSinhVienUpdate.splice(index, 1, sinhVien);
+        }
+      });
+      return { ...state, arrsinhVien: arrSinhVienUpdate };
+    }
+
+    case "SEARCH": {
+      let { value } = action;
+      //   console.log(value);
+      let arrSvUpdate = [...state.arrsinhVien];
+      arrSvUpdate = arrSvUpdate.filter(
+        (sv) =>
+          sv.maSV.toString().trim() === value ||
+          sv.hoTen.trim().toLowerCase().includes(value)
+      );
+
+      return { ...state, arrSvSearch: arrSvUpdate };
     }
 
     default:
