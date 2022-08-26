@@ -2,7 +2,6 @@ import logo from "./logo.svg";
 import "./App.css";
 import BaiTapGioHang from "./BaiTapGioHang_Props/BaiTapGioHang";
 import { NavLink, Outlet } from "react-router-dom";
-
 function App() {
   return (
     // <div className="App">
