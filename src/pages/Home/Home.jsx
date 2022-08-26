@@ -7,7 +7,12 @@ export default class Home extends Component {
         <div className="container-home" style={{ width: "100vh" }}></div>
         <div
           className="card text-white bg-dark"
-          style={{ width: "300px", height: "400px", marginTop: "100px", }}
+          style={{
+            width: "300px",
+            height: "400px",
+            marginTop: "100px",
+            opacity: "0.97",
+          }}
         >
           <div
             className="card-img border border-danger"
@@ -16,9 +21,9 @@ export default class Home extends Component {
               height: "150px",
               width: "160px",
               overflow: "hidden",
-              margin:"0 auto",
-              transform:"translateY(25px)",
-              transition:"all 0.3s"
+              margin: "0 auto",
+              transform: "translateY(25px)",
+              transition: "all 0.3s",
             }}
           >
             <img
@@ -50,7 +55,7 @@ export default class Home extends Component {
                 <i className="text-white fab fa-github" />
               </a>
             </div>
-            <button className="buttonContact btn btn-dark border border-danger mt-4" style={{transition:"all 0.5s"}}>
+            <button className="buttonContact btn btn-dark mt-4">
               Contact Me
             </button>
           </div>
