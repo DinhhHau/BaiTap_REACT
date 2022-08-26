@@ -11,10 +11,51 @@ export class FormSinhVien extends Component {
     },
   };
 
+  handelChange = (e) => {
+    // //
+    let tagInput = e.target;
+    let { name, value, type, pattern } = tagInput;
+    // console.log(name, value);
+
+    let errorMessage = "";
+
+    if (value.trim() === "") {
+      errorMessage = name + " không được bỏ trống !";
+    }
+    // check mail
+    if (type === "email") {
+      let regex = new RegExp(pattern);
+
+      if (!regex.test(value.toString())) {
+        errorMessage = name + " không đúng định dạng !";
+      }
+    }
+    // check phone
+    if (name === "soDienThoai") {
+      let regex = new RegExp(pattern);
+
+      if (!regex.test(value)) {
+        errorMessage = name + " không đúng định dạng !";
+      }
+    }
+    //  //
+    let errors = { ...this.state.errors, [name]: errorMessage };
+    this.setState({
+      errors: errors,
+    });
+    // //
+    const action = {
+      type: "HANDEL_CHANGE_INPUT",
+      id: e.target.id,
+      value: e.target.value,
+    };
+    console.log(action);
+    this.props.dispatch(action);
+  };
+
   render() {
     let { sinhVien, arrsinhVien } = this.props.QuanLySinhVienReducer;
-    console.log(sinhVien, arrsinhVien);
-
+    // console.log(sinhVien, arrsinhVien);
     return (
       <div className="container">
         <div className="card text-left rounded-0">
@@ -54,38 +95,24 @@ export class FormSinhVien extends Component {
                   <input
                     className="form-control"
                     id="maSV"
+                    type="text"
                     name="maSV"
                     value={sinhVien.maSV}
-                    onChange={(e) => {
-                      const action = {
-                        type: "HANDEL_CHANGE_INPUT",
-                        id: e.target.id,
-                        value: e.target.value,
-                      };
-                      console.log(action);
-                      this.props.dispatch(action);
-                    }}
+                    onChange={this.handelChange}
                   />
-                  <span className="text-danger"></span>
+                  <span className="text-danger">{this.state.errors.maSV}</span>
                 </div>
                 <div className="form-group col-6 mt-3">
                   <span>Họ Tên</span>
                   <input
                     className="form-control"
                     id="hoTen"
+                    type="text"
                     name="hoTen"
                     value={sinhVien.hoTen}
-                    onChange={(e) => {
-                      const action = {
-                        type: "HANDEL_CHANGE_INPUT",
-                        id: e.target.id,
-                        value: e.target.value,
-                      };
-                      console.log(action);
-                      this.props.dispatch(action);
-                    }}
+                    onChange={this.handelChange}
                   />
-                  <span className="text-danger"></span>
+                  <span className="text-danger">{this.state.errors.hoTen}</span>
                 </div>
               </div>
               <div className="row">
@@ -94,40 +121,28 @@ export class FormSinhVien extends Component {
                   <input
                     className="form-control"
                     id="soDienThoai"
+                    type="text"
                     name="soDienThoai"
                     value={sinhVien.soDienThoai}
                     pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
-                    onChange={(e) => {
-                      const action = {
-                        type: "HANDEL_CHANGE_INPUT",
-                        id: e.target.id,
-                        value: e.target.value,
-                      };
-                      console.log(action);
-                      this.props.dispatch(action);
-                    }}
+                    onChange={this.handelChange}
                   />
-                  <span className="text-danger"></span>
+                  <span className="text-danger">
+                    {this.state.errors.soDienThoai}
+                  </span>
                 </div>
                 <div className="form-group col-6 mt-3">
                   <span>Email</span>
                   <input
                     className="form-control"
                     id="email"
+                    type="email"
                     name="email"
                     value={sinhVien.email}
                     pattern="[a-z0-9]+@[a-z]+\.[a-z]{2,3}"
-                    onChange={(e) => {
-                      const action = {
-                        type: "HANDEL_CHANGE_INPUT",
-                        id: e.target.id,
-                        value: e.target.value,
-                      };
-                      console.log(action);
-                      this.props.dispatch(action);
-                    }}
+                    onChange={this.handelChange}
                   />
-                  <span className="text-danger"></span>
+                  <span className="text-danger">{this.state.errors.email}</span>
                 </div>
               </div>
               <div className="row mt-4">
@@ -170,7 +185,10 @@ export class FormSinhVien extends Component {
                   />
                 </div>
                 <div className="form-group col-3">
-                  <button className="btn btn-outline-info rounded-circle">
+                  <button
+                    type="button"
+                    className="btn btn-outline-info rounded-circle"
+                  >
                     <i className="fas fa-search" />
                   </button>
                 </div>

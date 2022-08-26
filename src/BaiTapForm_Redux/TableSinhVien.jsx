@@ -95,9 +95,8 @@ export class TableSinhVien extends Component {
     }
   };
   render() {
-    console.log(this.props.arrsinhVien);
-    console.log(this.props.arrSvSearch);
-
+    // console.log(this.props.arrsinhVien);
+    // console.log(this.props.arrSvSearch);
     return (
       <div className="container">
         <table className="table">
