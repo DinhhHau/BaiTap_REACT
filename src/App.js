@@ -8,7 +8,7 @@ function App() {
     //   <BaiTapGioHang />
     // </div>
     <div>
-      <nav className="navbar navbar-expand-sm navbar-dark bg-success">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-success" style={{ opacity:0.95 }}>
         <NavLink className="navbar-brand" to="">
           Nguyễn Đình Hậu
         </NavLink>

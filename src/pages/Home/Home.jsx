@@ -4,26 +4,36 @@ export default class Home extends Component {
   render() {
     return (
       <div className="container d-flex justify-content-center">
-        
-        <div className="container-home" style={{ width: "100vh"}}></div>
+        <div className="container-home" style={{ width: "100vh" }}></div>
         <div
           className="card text-white bg-dark"
-          style={{ width: "300px", height: "400px", marginTop: "100px" }}
+          style={{ width: "300px", height: "400px", marginTop: "100px", }}
         >
-          <div className="card-img mt-4" style={{ textAlign: "center" }}>
+          <div
+            className="card-img border border-danger"
+            style={{
+              borderRadius: "50%",
+              height: "150px",
+              width: "160px",
+              overflow: "hidden",
+              margin:"0 auto",
+              transform:"translateY(25px)",
+              transition:"all 0.3s"
+            }}
+          >
             <img
-              className="card-img-top border border-danger"
+              className="card-img-top "
               src="./img/img/avatar.jpg"
-              alt="Title"
+              alt="ava"
               style={{
-                width: "140px",
-                height: "130px",
-                border: "5px solid",
-                borderRadius: "50%",
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center",
               }}
             />
           </div>
-          <div className="card-body text-center">
+          <div className="card-body text-center mt-3">
             <h3 className="mt-4 my-0">Nguyễn Đình Hậu</h3>
             <p className="mt-2 my-0 text-danger">CYBERSOFT_BC30</p>
             <div className="social mt-4">
@@ -40,7 +50,7 @@ export default class Home extends Component {
                 <i className="text-white fab fa-github" />
               </a>
             </div>
-            <button className="buttonContact btn btn-dark border border-danger mt-4">
+            <button className="buttonContact btn btn-dark border border-danger mt-4" style={{transition:"all 0.5s"}}>
               Contact Me
             </button>
           </div>

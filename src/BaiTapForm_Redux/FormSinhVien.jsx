@@ -14,32 +14,30 @@ export class FormSinhVien extends Component {
   handelChange = (e) => {
     // //
     let tagInput = e.target;
-    let { name, value, type, pattern } = tagInput;
+    let { name, value, type, pattern, id } = tagInput;
+    let datatype = e.target.getAttribute("data-type");
     // console.log(name, value);
-
     let errorMessage = "";
-
     if (value.trim() === "") {
       errorMessage = name + " không được bỏ trống !";
-    }
-    // check mail
-    if (type === "email") {
-      let regex = new RegExp(pattern);
-
-      if (!regex.test(value.toString())) {
-        errorMessage = name + " không đúng định dạng !";
+    } else {
+      // check mail
+      if (datatype === "email") {
+        let regex = new RegExp(pattern);
+        if (!regex.test(value.toString())) {
+          errorMessage = name + " không đúng định dạng !";
+        }
+      }
+      // check phone
+      if (datatype === "soDienThoai") {
+        let regex = new RegExp(pattern);
+        if (!regex.test(value)) {
+          errorMessage = name + " không đúng định dạng !";
+        }
       }
     }
-    // check phone
-    if (name === "soDienThoai") {
-      let regex = new RegExp(pattern);
-
-      if (!regex.test(value)) {
-        errorMessage = name + " không đúng định dạng !";
-      }
-    }
-    //  //
-    let errors = { ...this.state.errors, [name]: errorMessage };
+    // //
+    let errors = { ...this.state.errors, [id]: errorMessage };
     this.setState({
       errors: errors,
     });
@@ -71,7 +69,7 @@ export class FormSinhVien extends Component {
                   this.props.QuanLySinhVienReducer.arrsinhVien;
                 for (let key of arrSinhVienUpdate) {
                   if (key.maSV.toString() === sinhVien.maSV) {
-                    return alert("Mã SV đã tồn tại!!!");
+                    return alert("Mã SV đã tồn tại !");
                   }
                 }
                 if (
@@ -80,7 +78,7 @@ export class FormSinhVien extends Component {
                   !sinhVien.soDienThoai ||
                   !sinhVien.email
                 ) {
-                  return alert("Thông tin sinh viên không được để trống !!!");
+                  return alert("Thông tin sinh viên không được để trống !");
                 }
                 const action = {
                   type: "HANDLE_SUBMIT",
@@ -97,7 +95,7 @@ export class FormSinhVien extends Component {
                     className="form-control"
                     id="maSV"
                     type="text"
-                    name="maSV"
+                    name="Mã sinh viên"
                     value={sinhVien.maSV}
                     onChange={this.handelChange}
                   />
@@ -110,7 +108,7 @@ export class FormSinhVien extends Component {
                     className="form-control"
                     id="hoTen"
                     type="text"
-                    name="hoTen"
+                    name="Tên Sinh Viên"
                     value={sinhVien.hoTen}
                     onChange={this.handelChange}
                   />
@@ -125,7 +123,8 @@ export class FormSinhVien extends Component {
                     className="form-control"
                     id="soDienThoai"
                     type="text"
-                    name="soDienThoai"
+                    data-type="soDienThoai"
+                    name="Điện thoại"
                     value={sinhVien.soDienThoai}
                     pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
                     onChange={this.handelChange}
@@ -141,7 +140,8 @@ export class FormSinhVien extends Component {
                     className="form-control"
                     id="email"
                     type="email"
-                    name="email"
+                    data-type="email"
+                    name="Email"
                     value={sinhVien.email}
                     pattern="[a-z0-9]+@[a-z]+\.[a-z]{2,3}"
                     onChange={this.handelChange}

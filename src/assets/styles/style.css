@@ -10,3 +10,12 @@
 .buttonContact:hover {
   background-color: darkred;
 }
+
+.card-img:hover{
+  width: 100% !important;
+  height: 160px !important;
+  border-radius: unset !important;
+  border: unset !important;
+  overflow: unset !important;
+  transform: translateY(0) !important;
+}
