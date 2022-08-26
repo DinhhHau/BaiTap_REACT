@@ -89,7 +89,6 @@ export class FormSinhVien extends Component {
             >
               <div className="row">
                 <div className="form-group col-6 mt-3">
-                  {/* <span>Mã SV</span> */}
                   <input
                     placeholder="Mã sinh viên"
                     className="form-control"
@@ -102,7 +101,6 @@ export class FormSinhVien extends Component {
                   <span className="text-danger">{this.state.errors.maSV}</span>
                 </div>
                 <div className="form-group col-6 mt-3">
-                  {/* <span>Họ Tên</span> */}
                   <input
                     placeholder="Tên sinh viên"
                     className="form-control"
@@ -117,7 +115,6 @@ export class FormSinhVien extends Component {
               </div>
               <div className="row">
                 <div className="form-group col-6 mt-3">
-                  {/* <span>Số điện thoại</span> */}
                   <input
                     placeholder="Số điện thoại"
                     className="form-control"
@@ -177,7 +174,7 @@ export class FormSinhVien extends Component {
                     // style={{boxShadow: 'none'}}
                     className="form-control me-1 search search rounded-pill border border-secondary"
                     type="search"
-                    placeholder="Search..."
+                    placeholder="Tìm sinh viên ..."
                     aria-label="Search"
                     onChange={(e) => {
                       const action = {
