@@ -10,8 +10,8 @@ function App() {
     // </div>
     <div>
       <nav className="navbar navbar-expand-sm navbar-dark bg-success">
-        <NavLink  className="navbar-brand" to="">
-        Nguyễn Đình Hậu
+        <NavLink className="navbar-brand" to="">
+          Nguyễn Đình Hậu
         </NavLink>
         <button
           className="navbar-toggler d-lg-none"
@@ -25,34 +25,46 @@ function App() {
         <div className="collapse navbar-collapse" id="collapsibleNavId">
           <ul className="navbar-nav me-auto mt-2 mt-lg-0">
             <li className="nav-item active">
-              <NavLink className={({ isActive }) =>
+              <NavLink
+                className={({ isActive }) =>
                   isActive ? "bg-light text-dark nav-link" : "nav-link"
                 }
-                style={({ isActive }) => (isActive ? { borderRadius: 5 } : {})} to="/home">
+                style={({ isActive }) => (isActive ? { borderRadius: 5 } : {})}
+                to="/home"
+              >
                 Home <span className="visually-hidden">(current)</span>
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={({ isActive }) =>
+              <NavLink
+                className={({ isActive }) =>
                   isActive ? "bg-light text-dark nav-link" : "nav-link"
                 }
-                style={({ isActive }) => (isActive ? { borderRadius: 5 } : {})} to="/baitapgiohang">
+                style={({ isActive }) => (isActive ? { borderRadius: 5 } : {})}
+                to="/baitapgiohang"
+              >
                 Bài Tập Giỏ Hàng
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={({ isActive }) =>
+              <NavLink
+                className={({ isActive }) =>
                   isActive ? "bg-light text-dark nav-link" : "nav-link"
                 }
-                style={({ isActive }) => (isActive ? { borderRadius: 5 } : {})} to="/baitapForm">
+                style={({ isActive }) => (isActive ? { borderRadius: 5 } : {})}
+                to="/baitapForm"
+              >
                 Bài Tập Form
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className={({ isActive }) =>
+              <NavLink
+                className={({ isActive }) =>
                   isActive ? "bg-light text-dark nav-link" : "nav-link"
                 }
-                style={({ isActive }) => (isActive ? { borderRadius: 5 } : {})} to="/baitapdatvephim">
+                style={({ isActive }) => (isActive ? { borderRadius: 5 } : {})}
+                to="/baitapdatvephim"
+              >
                 Bài Tập Đặt Vé Phim
               </NavLink>
             </li>
@@ -92,8 +104,8 @@ function App() {
           </form> */}
         </div>
       </nav>
-      <div style={{minHeight: 612}}>
-      <Outlet />
+      <div style={{ minHeight: "100vh" }}>
+        <Outlet />
       </div>
     </div>
   );
