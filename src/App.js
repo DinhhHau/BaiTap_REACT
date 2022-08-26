@@ -37,7 +37,7 @@ function App() {
                   isActive ? "bg-light text-dark nav-link" : "nav-link"
                 }
                 style={({ isActive }) => (isActive ? { borderRadius: 5 } : {})} to="/baitapgiohang">
-                Bài Tập React
+                Bài Tập Giỏ Hàng
               </NavLink>
             </li>
             <li className="nav-item">

@@ -59,7 +59,7 @@ export class FormSinhVien extends Component {
     return (
       <div className="container">
         <div className="card text-left rounded-0">
-          <div className="card-header bg-dark text-white">
+          <div className="card-header bg-dark text-white rounded-0">
             <h3>Thông tin sinh viên</h3>
           </div>
           <div className="card-body">
