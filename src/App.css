@@ -40,7 +40,3 @@
 .form-control:focus {
   box-shadow: none;
 }
-
-.buttonContact:hover {
-  background-color: darkred;
-}
