@@ -11,6 +11,7 @@ import About from './pages/About/About';
 import { Provider } from 'react-redux';
 import { store } from './redux/configStore';
 import BaiTapForm from './BaiTapForm_Redux/BaiTapForm';
+import BaiTapThuKinh from './BaiTapThuKinh/BaiTapThuKinh';
 //
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +23,8 @@ root.render(
         <Route path='home' element={<Home />} > </Route>
         <Route path='baitapgiohang' element={<BaiTapGioHang />} > </Route>
         <Route path='baitapForm' element={<BaiTapForm />} > </Route>
+        <Route path='baitapthukinh' element={<BaiTapThuKinh />} > </Route>
+
         {/* <Route path='baitapdatvephim' element={< />} > </Route> */}
 
       </Route>

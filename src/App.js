@@ -41,6 +41,18 @@ function App() {
                   isActive ? "bg-light text-dark nav-link" : "nav-link"
                 }
                 style={({ isActive }) => (isActive ? { borderRadius: 5 } : {})}
+                to="/baitapthukinh"
+              >
+                Bài Tập Thay Kính
+              </NavLink>
+            </li>
+            
+            <li className="nav-item">
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "bg-light text-dark nav-link" : "nav-link"
+                }
+                style={({ isActive }) => (isActive ? { borderRadius: 5 } : {})}
                 to="/baitapgiohang"
               >
                 Bài Tập Giỏ Hàng

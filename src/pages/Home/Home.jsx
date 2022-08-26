@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class Home extends Component {
   render() {
     return (
-      <div className="container d-flex justify-content-center">
+      <div className="container container-home d-flex justify-content-center">
         <div
           className="card text-white bg-dark"
           style={{ width: "300px", height: "400px", marginTop: "100px" }}
