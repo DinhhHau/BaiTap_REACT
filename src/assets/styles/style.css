@@ -1,6 +1,5 @@
 .container-home {
-  background-image: url(../img/backgroundcontact.jpg);
-  background-image: url(../img/bg2.jpg);
+  background-image: url(../img/img/bg2.jpg);
   background-size: cover;
   background-position: top;
   opacity: 0.9;
@@ -9,7 +8,7 @@
   height: 100%;
 }
 
-.card {
+.card-home {
   background-color: transparent !important;
   box-shadow: 5px 10px #888888;
 }
@@ -17,11 +16,13 @@
 .buttonContact {
   background-color: transparent !important;
   border: 1px solid darkgray;
+  transition: all 0.3s;
 }
 .buttonContact:hover {
   background-color: #dc3545 !important;
   border: 1px solid #dc3545;
   box-shadow: 5px 10px #888888;
+  transform: translateY(-10px);
 }
 
 .card-img:hover {

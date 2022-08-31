@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/configStore';
 import BaiTapForm from './BaiTapForm_Redux/BaiTapForm';
 import BaiTapThuKinh from './BaiTapThuKinh/BaiTapThuKinh';
+import BaiTapDatVePhim from './BaiTapDatVePhim/BaiTapDatVePhim';
 //
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,7 +26,7 @@ root.render(
         <Route path='baitapForm' element={<BaiTapForm />} > </Route>
         <Route path='baitapthukinh' element={<BaiTapThuKinh />} > </Route>
 
-        {/* <Route path='baitapdatvephim' element={< />} > </Route> */}
+        <Route path='baitapdatvephim' element={<BaiTapDatVePhim />} > </Route>
 
       </Route>
     </Routes>

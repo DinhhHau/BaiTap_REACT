@@ -6,7 +6,7 @@ export default class Home extends Component {
       <div className="container d-flex justify-content-center">
         <div className="container-home" style={{ width: "100vh" }}></div>
         <div
-          className="card text-white bg-dark"
+          className="card card-home text-white bg-dark"
           style={{
             width: "300px",
             height: "400px",
